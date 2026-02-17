@@ -1,0 +1,551 @@
+/* ====================================================
+   Sri Sai Properties — Real-Time Voice Assistant
+   Premium dark theme with glassmorphism
+   ==================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ---- Reset & Base ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #111827;
+  --bg-card: rgba(17, 24, 39, 0.7);
+  --bg-glass: rgba(255, 255, 255, 0.05);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --accent-green: #10b981;
+  --accent-green-glow: rgba(16, 185, 129, 0.3);
+  --accent-blue: #3b82f6;
+  --accent-purple: #8b5cf6;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-red-glow: rgba(239, 68, 68, 0.3);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.4);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 50%;
+}
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Call Mode Layout ---- */
+.call-mode {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Header ---- */
+.call-header {
+  padding: 20px 24px 16px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, transparent 100%);
+  position: relative;
+  z-index: 10;
+}
+
+.call-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.call-logo {
+  font-size: 1.8rem;
+}
+
+.call-subtitle {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* ---- Upload Section ---- */
+.upload-section {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  padding: 8px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.upload-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.upload-btn.uploading {
+  color: var(--accent-amber);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.upload-btn.success {
+  color: var(--accent-green);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.upload-input {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.upload-input::file-selector-button {
+  background: var(--accent-blue);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+/* ---- Messages Area ---- */
+.call-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scroll-behavior: smooth;
+}
+
+.call-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.call-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.call-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+/* Empty state */
+.call-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+  color: var(--text-muted);
+  gap: 8px;
+  padding: 40px 20px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 12px;
+  opacity: 0.5;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.call-empty p {
+  font-size: 0.95rem;
+  max-width: 280px;
+}
+
+.empty-hint {
+  font-size: 0.8rem !important;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+/* Message bubbles */
+.call-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 90%;
+  animation: msgAppear 0.3s ease-out;
+}
+
+.call-msg.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.call-msg.assistant {
+  align-self: flex-start;
+}
+
+.msg-avatar {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+}
+
+.msg-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  backdrop-filter: blur(10px);
+}
+
+.call-msg.user .msg-content {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.call-msg.assistant .msg-content {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.15);
+}
+
+.msg-role {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.msg-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+/* Streaming cursor */
+.cursor-blink {
+  animation: blink 0.8s steps(2) infinite;
+  color: var(--accent-purple);
+}
+
+/* ---- Call Controls ---- */
+.call-controls {
+  padding: 16px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(0deg, var(--bg-primary) 60%, transparent 100%);
+  position: relative;
+  z-index: 10;
+}
+
+/* Status */
+.call-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Performance metrics bar */
+.perf-bar {
+  display: flex;
+  gap: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.7rem;
+  color: var(--text-secondary, #888);
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  justify-content: center;
+}
+
+.perf-bar .perf-total {
+  color: var(--text-accent, #60a5fa);
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  transition: all 0.3s ease;
+}
+
+.status-dot.active {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-dot.speaking {
+  box-shadow: 0 0 12px var(--accent-green-glow);
+  animation: pulseGreen 1s ease-in-out infinite;
+}
+
+.status-dot.ai-speaking {
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+  animation: pulsePurple 1.2s ease-in-out infinite;
+}
+
+/* Waveform */
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 40px;
+  padding: 0 10px;
+}
+
+.wave-bar {
+  width: 3px;
+  height: 4px;
+  background: var(--accent-blue);
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+.waveform.active .wave-bar {
+  background: var(--accent-green);
+  animation: waveAnim 0.8s ease-in-out infinite alternate;
+}
+
+.waveform.ai .wave-bar {
+  background: var(--accent-purple);
+  animation: waveAnim 1s ease-in-out infinite alternate;
+}
+
+/* Call Button */
+.call-button {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 8px 30px var(--accent-green-glow), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.call-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 40px var(--accent-green-glow);
+}
+
+.call-button:active {
+  transform: scale(0.95);
+}
+
+.call-button.active {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: 0 8px 30px var(--accent-red-glow);
+  animation: callActive 2s ease-in-out infinite;
+}
+
+.call-button.active:hover {
+  box-shadow: 0 12px 40px var(--accent-red-glow);
+}
+
+.call-icon {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.call-icon.end {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* Clear Button */
+.clear-btn {
+  background: none;
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  padding: 6px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clear-btn:hover {
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ---- Animations ---- */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes pulseGreen {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px var(--accent-green-glow);
+  }
+
+  50% {
+    box-shadow: 0 0 20px var(--accent-green-glow);
+  }
+}
+
+@keyframes pulsePurple {
+
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  }
+}
+
+@keyframes waveAnim {
+  0% {
+    height: 4px;
+  }
+
+  50% {
+    height: 28px;
+  }
+
+  100% {
+    height: 8px;
+  }
+}
+
+@keyframes callActive {
+
+  0%,
+  100% {
+    box-shadow: 0 8px 30px var(--accent-red-glow);
+  }
+
+  50% {
+    box-shadow: 0 8px 45px var(--accent-red-glow),
+      0 0 0 8px rgba(239, 68, 68, 0.1);
+  }
+}
+
+@keyframes msgAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 480px) {
+  .call-mode {
+    max-width: 100%;
+  }
+
+  .call-header {
+    padding: 16px 16px 12px;
+  }
+
+  .call-title {
+    font-size: 1.2rem;
+  }
+
+  .call-messages {
+    padding: 12px 14px;
+  }
+
+  .call-controls {
+    padding: 12px 16px 24px;
+  }
+
+  .call-button {
+    width: 64px;
+    height: 64px;
+    font-size: 1.6rem;
+  }
+}
+
+/* ---- Toast overrides ---- */
+.Toastify__toast-theme--dark {
+  background: var(--bg-card) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-md) !important;
+}

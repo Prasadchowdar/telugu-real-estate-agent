@@ -1,0 +1,149 @@
+{
+  "project_name": "Sri Sai Properties Voice Assistant",
+  "theme_strategy": "light",
+  "instructions_to_main_agent": [
+    "You are building a Mobile-First Voice Assistant Web Demo.",
+    "The UI must be extremely simple: Chat History + Big Mic Button.",
+    "Use 'Noto Sans Telugu' for ALL text to ensure Telugu readability.",
+    "Do not use dark mode. Stick to clean white/slate-50 backgrounds.",
+    "The 'Mic Button' is the most important element. Make it central and interactive.",
+    "Use the provided image URLs for the Agent and Properties.",
+    "Ensure the PDF upload feature is accessible via a clear icon near the mic input."
+  ],
+  "typography": {
+    "font_family_primary": "Noto Sans Telugu, sans-serif",
+    "font_import_url": "https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap",
+    "scale": {
+      "h1": "text-2xl font-bold tracking-tight text-slate-900",
+      "h2": "text-xl font-bold text-slate-900",
+      "body": "text-base font-normal text-slate-600 leading-relaxed",
+      "caption": "text-sm text-slate-500",
+      "telugu_emphasis": "font-medium text-slate-800"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#F8FAFC",
+      "surface": "#FFFFFF",
+      "primary": "#2563eb",
+      "primary_hover": "#1d4ed8",
+      "secondary": "#e2e8f0",
+      "accent": "#10b981",
+      "accent_hover": "#059669",
+      "text_primary": "#0f172a",
+      "text_secondary": "#475569",
+      "border": "#e2e8f0",
+      "error": "#ef4444"
+    },
+    "usage": {
+      "page_bg": "bg-slate-50",
+      "card_bg": "bg-white",
+      "primary_btn": "bg-blue-600 hover:bg-blue-700 text-white shadow-md",
+      "secondary_btn": "bg-slate-100 hover:bg-slate-200 text-slate-900",
+      "success_btn": "bg-emerald-500 hover:bg-emerald-600 text-white",
+      "mic_active": "bg-red-500 animate-pulse ring-4 ring-red-200",
+      "mic_inactive": "bg-blue-600 shadow-xl hover:scale-105 transition-transform"
+    }
+  },
+  "layout_structure": {
+    "grid_system": "Single column layout (Mobile focused). Max-width: md (768px) centered on desktop.",
+    "spacing": {
+      "container_padding": "p-4 md:p-6",
+      "item_gap": "gap-4",
+      "section_gap": "gap-8"
+    },
+    "z_index": {
+      "header": "z-50",
+      "bottom_bar": "z-50",
+      "modal": "z-60"
+    }
+  },
+  "components": {
+    "Header": {
+      "path": "/app/frontend/src/components/Header.js",
+      "style": "sticky top-0 h-16 bg-white/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-4",
+      "elements": [
+        "Logo (Left): Text 'Sri Sai Properties' (Blue-700, Bold)",
+        "Agent (Right): Circular Avatar 'Priya' with green online dot"
+      ]
+    },
+    "ChatArea": {
+      "path": "/app/frontend/src/components/ChatArea.js",
+      "style": "flex-1 overflow-y-auto p-4 space-y-6 pb-32",
+      "bubbles": {
+        "user": "bg-blue-600 text-white rounded-2xl rounded-tr-none p-3 max-w-[85%] self-end",
+        "agent": "bg-white border border-slate-200 text-slate-800 rounded-2xl rounded-tl-none p-4 max-w-[90%] self-start shadow-sm"
+      }
+    },
+    "PropertyCard": {
+      "path": "/app/frontend/src/components/PropertyCard.js",
+      "style": "min-w-[280px] w-[280px] bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow snap-center",
+      "elements": [
+        "Image: h-40 w-full object-cover",
+        "Content: p-4 flex flex-col gap-2",
+        "Price: Text-lg font-bold text-blue-600",
+        "Location: Flex row, icon + text-sm text-slate-500",
+        "Specs: 2 Bed • 2 Bath (Row of icons)",
+        "Action: Full width button 'View Details' (Emerald-500)"
+      ]
+    },
+    "VoiceControls": {
+      "path": "/app/frontend/src/components/VoiceControls.js",
+      "style": "fixed bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-white/90 backdrop-blur-xl p-2 pl-4 pr-4 rounded-full shadow-2xl border border-slate-200",
+      "elements": [
+        "PDF Upload (Left): Icon Button (Paperclip/File), text-slate-500 hover:text-blue-600",
+        "Mic Button (Center): Large (h-16 w-16), Rounded-full, Primary Color. Pulsing animation when recording.",
+        "Send/Keyboard (Right): Icon Button, text-slate-500"
+      ]
+    }
+  },
+  "image_urls": {
+    "agent_avatar": "https://images.unsplash.com/photo-1669829528850-959d7b08278b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBidXNpbmVzcyUyMHdvbWFuJTIwcHJvZmVzc2lvbmFsJTIwcG9ydHJhaXQlMjBzbWlsaW5nfGVufDB8fHx8MTc3MTAwMzkxOXww&ixlib=rb-4.1.0&q=85",
+    "properties": [
+      {
+        "url": "https://images.unsplash.com/photo-1700745296929-064a7a2bef25?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBsdXh1cnklMjBhcGFydG1lbnQlMjBidWlsZGluZyUyMGV4dGVyaW9yJTIwc3Vubnl8ZW58MHx8fHwxNzcxMDAzOTE5fDA&ixlib=rb-4.1.0&q=85",
+        "category": "High-rise Luxury"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1758194403577-a9e4dbfbade1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBsdXh1cnklMjBhcGFydG1lbnQlMjBidWlsZGluZyUyMGV4dGVyaW9yJTIwc3Vubnl8ZW58MHx8fHwxNzcxMDAzOTE5fDA&ixlib=rb-4.1.0&q=85",
+        "category": "Golf View Apartment"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1717326996078-cf86b5d979c6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA3MDB8MHwxfHNlYXJjaHwzfHxtb2Rlcm4lMjBsdXh1cnklMjBhcGFydG1lbnQlMjBidWlsZGluZyUyMGV4dGVyaW9yJTIwc3Vubnl8ZW58MHx8fHwxNzcxMDAzOTE5fDA&ixlib=rb-4.1.0&q=85",
+        "category": "Modern Balcony"
+      }
+    ]
+  },
+  "motion_guidelines": {
+    "transitions": "transition-all duration-300 ease-out",
+    "mic_animation": "@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); } 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }",
+    "entrance": "animate-in slide-in-from-bottom-4 fade-in duration-500"
+  },
+  "accessibility": {
+    "focus_ring": "focus:ring-2 focus:ring-blue-500 focus:outline-none",
+    "contrast": "Ensure text-slate-500 is used only for secondary labels. Main text must be slate-900 or blue-600.",
+    "aria": "Mic button must have aria-label='Start recording' / 'Stop recording'"
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯📚🎭🎬🎪🎉🎊🎁🎀🎂🍰🎈🎨🎰💰💵💳🏦💎🪙💸🤑📊📈📉💹🔢🏆🥇 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN",
+    "Prioritize using pre-existing components from src/components/ui when applicable",
+    "Create new components that match the style and conventions of existing components when needed",
+    "Examine existing components to understand the project's component patterns before creating new ones",
+    "Components MUST use named exports (export const ComponentName = ...)",
+    "Pages MUST use default exports (export default function PageName() {...})",
+    "Use sonner for toasts",
+    "Sonner component are located in /app/src/components/ui/sonner.tsx"
+  ]
+}
